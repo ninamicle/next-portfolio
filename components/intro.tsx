@@ -9,7 +9,10 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import { useSectionInView } from "@/lib/hooks";
+import { useActiveSectionContext } from "@/context/active-section";
 function Intro() {
+  const { activeSection, setActiveSection, setTimeOfLastClick } =
+    useActiveSectionContext();
   const { ref } = useSectionInView("Home");
   return (
     <section
@@ -63,27 +66,31 @@ function Intro() {
         <Link
           href={"#contact"}
           className="group cursor-pointer bg-gray-900 text-white p-4 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-800 active:scale-105 transition"
+          onClick={() => {
+            setActiveSection("Contact");
+            setTimeOfLastClick(Date.now());
+          }}
         >
           Contact me here
           <FaChevronRight className="opacity-75 group-hover:translate-x-1 transition" />
         </Link>
 
         <a
-          className="cursor-pointer border border-black/10 bg-white p-4 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110  active:scale-105 transition"
+          className="cursor-pointer borderBlack bg-white p-4 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110  active:scale-105 transition dark:bg-white/10"
           download
           href="/dummy.pdf"
         >
           Download CV <FaDownload className="opacity-60" />
         </a>
         <a
-          className="cursor-pointer text-gray-700 border border-black/10 bg-white p-4 flex items-center  rounded-full outline-none focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950  active:scale-105 transition"
+          className="cursor-pointer text-gray-700 borderBlack bg-white p-4 flex items-center  rounded-full outline-none focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950  active:scale-105 transition dark:bg-white/10 dark:text-white/60"
           href="https://linkedin.com"
           target="_black"
         >
           <FaLinkedin />
         </a>
         <a
-          className="cursor-pointer text-gray-700 border-black/10 bg-white p-4 flex items-center  rounded-full outline-none focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950  active:scale-105 transition"
+          className="cursor-pointer text-gray-700 border-black/10 bg-white p-4 flex items-center  rounded-full outline-none focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950  active:scale-105 transition dark:bg-white/10  dark:text-white/60"
           href="https://github.com"
           target="_black"
         >
